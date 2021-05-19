@@ -1,0 +1,48 @@
+CREATE DATABASE `nashta`;
+
+CREATE TABLE `nashta`.`user` (
+	`id` INT(20) NOT NULL AUTO_INCREMENT,
+	`email` VARCHAR(100) NULL DEFAULT NULL,
+	`password` VARCHAR(500) NULL DEFAULT NULL,
+	`role` ENUM('mahasiswa','dosen') NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8mb4_bin';
+
+CREATE TABLE `nashta`.`mahasiswa` ( 
+	`nim` INT(20) NULL DEFAULT NULL , 
+	`nama` VARCHAR(50) NULL DEFAULT NULL , 
+	`alamat` VARCHAR(200) NULL DEFAULT NULL , 
+	`tanggalLahir` DATETIME NULL DEFAULT NULL , 
+	`jurusan` VARCHAR(50) NULL DEFAULT NULL ,
+	PRIMARY KEY (`nim`)
+) 
+ENGINE = InnoDB;
+
+CREATE TABLE `nashta`.`dosen` ( 
+	`idDosen` INT(20) NOT NULL , 
+	`nama` VARCHAR(50) NOT NULL ,
+	PRIMARY KEY (`idDosen`)
+) 
+ENGINE = InnoDB;
+
+CREATE TABLE `mataKuliah` (
+	`idMataKuliah` INT(20) NOT NULL,
+	`nim` INT(20) NULL DEFAULT NULL,
+	`namaMataKuliah` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`idMataKuliah`),
+	CONSTRAINT `FK__mahasiswa` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`)
+)
+ENGINE = InnoDB;
+
+CREATE TABLE `dataNilai` (
+	`nim` INT(20) NULL,
+	`idMataKuliah` INT(20) NULL,
+	`idDosen` INT(20) NULL,
+	`nilai` INT(3) NULL,
+	`keterangan` VARCHAR(15) NULL DEFAULT NULL,
+	CONSTRAINT `FK__mahasiswanim` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`),
+	CONSTRAINT `FK__matakuliah` FOREIGN KEY (`idMataKuliah`) REFERENCES `matakuliah` (`idMataKuliah`),
+	CONSTRAINT `FK__dosen` FOREIGN KEY (`idDosen`) REFERENCES `dosen` (`idDosen`)
+)
+ENGINE = InnoDB;
