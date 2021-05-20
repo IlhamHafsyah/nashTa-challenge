@@ -1,6 +1,10 @@
 const router = require('express').Router()
-const { getDataMahasiswa } = require('../controller/mahasiswa')
+const {
+  getDataMahasiswa,
+  getAverageNilaiMahasiswa
+} = require('../controller/mahasiswa')
 
 router.get('/', getDataMahasiswa)
+router.get('/average', getAverageNilaiMahasiswa)
 
 module.exports = router
