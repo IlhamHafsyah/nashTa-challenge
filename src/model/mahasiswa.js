@@ -28,5 +28,15 @@ module.exports = {
         }
       )
     })
+  },
+  getAverageJurusan: () => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        'SELECT jurusan, AVG(nilai) AS nilai_rata_rata FROM datanilai JOIN mahasiswa ON datanilai.nim = mahasiswa.nim GROUP BY jurusan',
+        (error, result) => {
+          !error ? resolve(result) : reject(new Error(error))
+        }
+      )
+    })
   }
 }
