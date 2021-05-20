@@ -45,7 +45,6 @@ module.exports = {
     try {
       const { nilai, idMataKuliah, idDosen } = req.body
       const { id } = req.params
-      console.log(req.params)
       const cekNim = await cekNimMahasiswa(id)
       const cekMataKuliah = await cekIdMataKuliah(idMataKuliah)
       const keterangan = nilai > 60 ? 'Lulus' : 'Tidak Lulus'

@@ -6,10 +6,17 @@ const {
   getAverageNilaiJurusan,
   postDataMahasiswa
 } = require('../controller/mahasiswa')
+const { authorization, isDosen } = require('../auth/auth')
 
-router.get('/', getDataMahasiswa)
-router.get('/average', getAverageNilaiMahasiswa)
-router.get('/averagejurusan', getAverageNilaiJurusan)
-router.post('/tambahmahasiswa', uploadFile, postDataMahasiswa)
+router.get('/', authorization, getDataMahasiswa)
+router.get('/average', authorization, getAverageNilaiMahasiswa)
+router.get('/averagejurusan', authorization, getAverageNilaiJurusan)
+router.post(
+  '/tambahmahasiswa',
+  authorization,
+  isDosen,
+  uploadFile,
+  postDataMahasiswa
+)
 
 module.exports = router
