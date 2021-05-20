@@ -43,15 +43,18 @@ module.exports = {
   },
   putNilai: async (req, res) => {
     try {
-      const { nim, nilai, idMataKuliah } = req.body
-      const cekNim = await cekNimMahasiswa(nim)
+      const { nilai, idMataKuliah, idDosen } = req.body
+      const { id } = req.params
+      console.log(req.params)
+      const cekNim = await cekNimMahasiswa(id)
       const cekMataKuliah = await cekIdMataKuliah(idMataKuliah)
       const keterangan = nilai > 60 ? 'Lulus' : 'Tidak Lulus'
       if (nilai < 100 && nilai > 0) {
         const setData = {
-          nim,
+          id,
           idMataKuliah,
           nilai,
+          idDosen,
           keterangan
         }
         if (cekNim.length > 0 && cekMataKuliah.length > 0) {
@@ -59,7 +62,7 @@ module.exports = {
           return helper.response(
             res,
             200,
-            `Success edit nilai untuk mahasiswa dengan NIM ${nim}`,
+            `Success edit nilai untuk mahasiswa dengan NIM ${id}`,
             result
           )
         } else {

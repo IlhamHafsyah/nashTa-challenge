@@ -41,11 +41,11 @@ module.exports = {
       )
     })
   },
-  editNilai: (setData, nim) => {
+  editNilai: (setData) => {
     return new Promise((resolve, reject) => {
       connection.query(
         'UPDATE datanilai SET nilai = ? WHERE nim = ?',
-        [setData.nilai, nim],
+        [setData.nilai, setData.id],
         (error, result) => {
           if (!error) {
             const newResult = {
