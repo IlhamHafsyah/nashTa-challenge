@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "248cadb2-d5ca-4c4c-bba5-0500dd686ad4",
+		"name": "NASHTA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "dosenemail@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dosenpassword",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "dosenemail@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dosenpassword",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "dosen",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST NILAI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nim",
+							"value": "20210005",
+							"type": "text"
+						},
+						{
+							"key": "idMataKuliah",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "idDosen",
+							"value": "2021001",
+							"type": "text"
+						},
+						{
+							"key": "nilai",
+							"value": "65",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/nilai/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"nilai",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT NILAI",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nim",
+							"value": "20210002",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "idMataKuliah",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "nilai",
+							"value": "85",
+							"type": "text"
+						},
+						{
+							"key": "idDosen",
+							"value": "2021002",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/nilai/edit/20210005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"nilai",
+						"edit",
+						"20210005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nim",
+							"value": "20210005",
+							"type": "text"
+						},
+						{
+							"key": "idMataKuliah",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/nilai/delete?nim=20210006&idMatakuliah=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"nilai",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "nim",
+							"value": "20210006"
+						},
+						{
+							"key": "idMatakuliah",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET DATA MAHASISWA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mahasiswa?jurusan=Teknik Informatika&dosen=Mohammad&namaMataKuliah=database&sort=nilai",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mahasiswa"
+					],
+					"query": [
+						{
+							"key": "jurusan",
+							"value": "Teknik Informatika"
+						},
+						{
+							"key": "dosen",
+							"value": "Mohammad"
+						},
+						{
+							"key": "namaMataKuliah",
+							"value": "database"
+						},
+						{
+							"key": "sort",
+							"value": "nilai"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET RATA-RATA NILAI MAHASISWA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mahasiswa/average",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mahasiswa",
+						"average"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET RATA-RATA NILAI JURUSAN",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/mahasiswa/averagejurusan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mahasiswa",
+						"averagejurusan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data",
+							"type": "file",
+							"src": "PhvllxT70/data.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/mahasiswa/tambahmahasiswa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mahasiswa",
+						"tambahmahasiswa"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MywiZW1haWwiOiJkb3NlbmVtYWlsQGdtYWlsLmNvbSIsInJvbGUiOiJkb3NlbiIsImlhdCI6MTYyMTQ5MzA4MCwiZXhwIjoxNjIxNTAzODgwfQ.dIyWqmfbMQDv4q1o-LacT4FTK9DxtEd1KfKYKQ-fewk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
