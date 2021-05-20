@@ -1,5 +1,8 @@
+//Soal B SQL No. 1
+//create database
 CREATE DATABASE `nashta`;
 
+//create user table
 CREATE TABLE `nashta`.`user` (
 	`id` INT(20) NOT NULL AUTO_INCREMENT,
 	`email` VARCHAR(100) NULL DEFAULT NULL,
@@ -9,16 +12,18 @@ CREATE TABLE `nashta`.`user` (
 )
 COLLATE='utf8mb4_bin';
 
+//create mahasiswa table
 CREATE TABLE `nashta`.`mahasiswa` ( 
 	`nim` INT(20) NULL DEFAULT NULL , 
 	`nama` VARCHAR(50) NULL DEFAULT NULL , 
 	`alamat` VARCHAR(200) NULL DEFAULT NULL , 
-	`tanggalLahir` DATETIME NULL DEFAULT NULL , 
+	`tanggalLahir` DATE NULL DEFAULT NULL , 
 	`jurusan` VARCHAR(50) NULL DEFAULT NULL ,
 	PRIMARY KEY (`nim`)
 ) 
 ENGINE = InnoDB;
 
+//create dosen table
 CREATE TABLE `nashta`.`dosen` ( 
 	`idDosen` INT(20) NOT NULL , 
 	`nama` VARCHAR(50) NOT NULL ,
@@ -26,15 +31,16 @@ CREATE TABLE `nashta`.`dosen` (
 ) 
 ENGINE = InnoDB;
 
+//create mataKuliah table
 CREATE TABLE `mataKuliah` (
 	`idMataKuliah` INT(20) NOT NULL,
 	`nim` INT(20) NULL DEFAULT NULL,
 	`namaMataKuliah` VARCHAR(50) NULL DEFAULT NULL,
-	PRIMARY KEY (`idMataKuliah`),
 	CONSTRAINT `FK__mahasiswa` FOREIGN KEY (`nim`) REFERENCES `mahasiswa` (`nim`)
 )
 ENGINE = InnoDB;
 
+//create dataNilai table
 CREATE TABLE `dataNilai` (
 	`nim` INT(20) NULL,
 	`idMataKuliah` INT(20) NULL,
@@ -46,3 +52,33 @@ CREATE TABLE `dataNilai` (
 	CONSTRAINT `FK__dosen` FOREIGN KEY (`idDosen`) REFERENCES `dosen` (`idDosen`)
 )
 ENGINE = InnoDB;
+
+
+//Soal B SQL No. 2
+//insert to table user
+INSERT INTO `user` (`ID`, `email`, `password`, `role`) VALUES (NULL, 'mohammadilham@gmail.com', 'mohammadilhampassword', 'mahasiswa'), (NULL, 'nurdhihafsyah@gmail.com', 'nurdhihafsyahpassword', 'dosen')
+
+//insert to tabel mahasiswa
+INSERT INTO `mahasiswa` (`nim`, `nama`, `alamat`, `tanggalLahir`, `jurusan`) VALUES ('20210001', 'ilham', 'Tangerang', '1998-10-10 05:16:38', 'Teknik informatika'), ('20210002', 'Hafsyah', 'Banten', '1998-10-10 05:16:38', 'Fisika');
+
+//insert to tabel dosen
+INSERT INTO `dosen` (`idDosen`, `nama`) VALUES ('2021001', 'Mohammad'), ('2021002', 'Nurdhi');
+
+//insert to tabel mataKuliah
+INSERT INTO `matakuliahk` (`idMataKuliah`, `nim`, `namaMataKuliah`) VALUES ('1', '20210001', 'database'), ('1', '20210002', 'database');
+
+//insert to tabel dataNilai
+INSERT INTO `datanilai` (`nim`, `idMataKuliah`, `idDosen`, `nilai`, `keterangan`) VALUES ('20210001', '1', '2021001', '90', 'Lulus'), ('20210002', '1', '2021001', '100', 'Lulus');
+
+
+//Soal B SQL No. 3
+SELECT mahasiswa.nim, mahasiswa.nama, alamat, tanggalLahir, jurusan, TIMESTAMPDIFF(YEAR, tanggalLahir, CURDATE()) AS umur, dosen.nama AS dosen, namaMataKuliah, nilai
+FROM mahasiswa
+JOIN matakuliah ON mahasiswa.nim = matakuliah.nim
+JOIN datanilai ON datanilai.nim = matakuliah.nim
+JOIN dosen ON dosen.idDosen = datanilai.idDosen
+WHERE nilai < 70
+AND jurusan LIKE '%namajurusan%'
+AND dosen.nama LIKE '%namadosen%'
+AND namaMataKuliah LIKE '%namamatakuliah%'
+ORDER BY nilai DESC
