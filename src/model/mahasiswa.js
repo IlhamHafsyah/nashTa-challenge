@@ -38,5 +38,19 @@ module.exports = {
         }
       )
     })
+  },
+  postMahasiswa: (json) => {
+    return new Promise((resolve, reject) => {
+      connection.query('INSERT INTO mahasiswa SET ?', json, (error, result) => {
+        if (!error) {
+          const newResult = {
+            ...json
+          }
+          resolve(newResult)
+        } else {
+          reject(new Error(error))
+        }
+      })
+    })
   }
 }

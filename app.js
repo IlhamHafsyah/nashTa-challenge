@@ -6,6 +6,7 @@ const routesNavigation = require('./src/routesNavigation')
 
 const app = express()
 app.use(morgan('dev'))
+app.use(express.static('upload'))
 app.use(cors())
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*')
